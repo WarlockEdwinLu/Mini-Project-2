@@ -6,16 +6,10 @@ st.title("Mini Project 2: Streamlit Chatbot")
 
 # TODO: Replace with your actual OpenAI API key
 # Allow the user to enter their OpenAI API key
-if "openai_key" not in st.session_state:
-    st.session_state["openai_key"] = ""
+openai_key = st.secrets["OPENAI_API_KEY"]
 
-st.session_state["openai_key"] = st.text_input("Enter your OpenAI API Key:", type="password")
-
-if not st.session_state["openai_key"]:
-    st.warning("Please enter your OpenAI API key to continue.")
-    st.stop()
-
-client = OpenAI(api_key=st.session_state["openai_key"])
+# Initialize OpenAI client
+client = OpenAI(api_key=openai_key)
 
 # Define a function to get the conversation history (Not required for Part-2, will be useful in Part-3)
 def get_conversation() -> str:
